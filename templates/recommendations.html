@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Recommended Jobs</h1>
+
+    <h3>Detected Skills</h3>
+
+    <ul>
+        {% for skill in skills %}
+        <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+
+    <table>
+
+        <tr>
+            <th>Job Title</th>
+            <th>Match %</th>
+        </tr>
+
+        {% for item in recommendations %}
+        <tr>
+            <td>{{ item.job }}</td>
+            <td>{{ item.score }}%</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>
