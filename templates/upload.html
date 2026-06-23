@@ -1,33 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Upload Resume</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
 
-<div class="container">
+{% block content %}
 
-    <h1>Upload Resume</h1>
+<div class="row justify-content-center">
 
-    <form action="/recommend"
-          method="POST"
-          enctype="multipart/form-data">
+    <div class="col-md-6">
 
-        <input type="file"
-               name="resume"
-               accept=".pdf"
-               required>
+        <div class="card p-4">
 
-        <br><br>
+            <h2 class="text-center mb-4">
+                Upload Resume
+            </h2>
 
-        <button type="submit">
-            Get Recommendations
-        </button>
+            <form action="/recommend"
+                  method="POST"
+                  enctype="multipart/form-data">
 
-    </form>
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Select Resume (PDF)
+                    </label>
+
+                    <input type="file"
+                           name="resume"
+                           accept=".pdf"
+                           class="form-control"
+                           required>
+
+                </div>
+
+                <div class="d-grid">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Get Recommendations
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </div>
 
-</body>
-</html>
+{% endblock %}

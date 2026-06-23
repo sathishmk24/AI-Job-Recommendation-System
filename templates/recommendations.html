@@ -1,40 +1,79 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Recommendations</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
 
-<div class="container">
+{% block content %}
 
-    <h1>Recommended Jobs</h1>
+<div class="row">
 
-    <h3>Detected Skills</h3>
+    <div class="col-md-12">
 
-    <ul>
-        {% for skill in skills %}
-        <li>{{ skill }}</li>
-        {% endfor %}
-    </ul>
+        <div class="card p-4">
 
-    <table>
+            <h2 class="text-center mb-4">
+                Recommended Jobs
+            </h2>
 
-        <tr>
-            <th>Job Title</th>
-            <th>Match %</th>
-        </tr>
+            <div class="alert alert-success">
+                <h5>
+                    Resume Score: {{ score }}%
+                </h5>
+            </div>
 
-        {% for item in recommendations %}
-        <tr>
-            <td>{{ item.job }}</td>
-            <td>{{ item.score }}%</td>
-        </tr>
-        {% endfor %}
+            <h4>Detected Skills</h4>
 
-    </table>
+            <div class="mb-4">
+
+                {% for skill in skills %}
+                    <span class="badge bg-primary me-2 mb-2">
+                        {{ skill }}
+                    </span>
+                {% endfor %}
+
+            </div>
+
+            <h4>Job Recommendations</h4>
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Match Percentage</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in recommendations %}
+
+                    <tr>
+
+                        <td>
+                            {{ item.job }}
+                        </td>
+
+                        <td>
+                            {{ item.score }}%
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            <a href="/upload"
+               class="btn btn-primary">
+                Upload Another Resume
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 
-</body>
-</html>
+{% endblock %}
